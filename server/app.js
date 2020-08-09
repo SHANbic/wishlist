@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+const PORT = process.env.PORT || 8080
 const path = require('path');
 const multer = require('multer');
 require('dotenv').config();
@@ -62,8 +62,8 @@ mongoose
     useUnifiedTopology: true
   })
   .then(() => {
-    const server = app.listen(8080, () => {
-      console.log('Listening on port 8080');
+    const server = app.listen(PORT, () => {
+      console.log(`Listening on port ${PORT}`);
     });
     const io = require('./socket').init(server);
     io.on('connection', socket => {
